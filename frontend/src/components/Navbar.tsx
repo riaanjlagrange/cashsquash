@@ -1,7 +1,7 @@
 import { MdDashboard } from "react-icons/md";
 import { FaUserFriends, FaChevronRight } from "react-icons/fa";
 import { FaMoneyBills, FaWallet, FaMoneyCheckDollar, FaGear } from "react-icons/fa6";
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 
 // temp logo
 import { SiCashapp } from "react-icons/si";
@@ -9,6 +9,12 @@ import { SiCashapp } from "react-icons/si";
 import { CgProfile } from "react-icons/cg";
 
 function Navbar() {
+
+  const navigate = useNavigate();
+
+  const handleClick = () => {
+    navigate("/new-request");
+  }
 
   const activeStyle = "text-custom-accent-bright flex items-center justify-between";
   const normalStyle = "text-white flex items-center justify-between hover:text-custom-accent-bright transition-all";
@@ -70,6 +76,7 @@ function Navbar() {
               <FaChevronRight className="font-light text-white" />
             </NavLink>
           </li>
+          <button onClick={handleClick} className="px-10 py-3 bg-custom-primary-default mt-5 text-slate-900 w-full hover:bg-custom-primary-ligth transition-all rounded-sm">New Request</button>
         </ul>
       </div>
 

@@ -7,6 +7,7 @@ import Error from './pages/Error';
 import Dashboard from './pages/Dashboard';
 import MyLoans from './features/loans/MyLoans';
 import LoanRequests from './features/loans/LoanRequests';
+import NewLoanRequest from './features/loans/NewLoanRequest';
 import PaymentHistory from './features/payments/PaymentHistory';
 import Friends from './features/friends/Friends';
 import AddFriend from './features/friends/AddFriend';
@@ -38,6 +39,10 @@ const router = createBrowserRouter([
       {
         path: "loan-requests",
         element: <LoanRequests />,
+      },
+      {
+        path: "new-request",
+        element: <NewLoanRequest />,
       },
       {
         path: "payment-history",
