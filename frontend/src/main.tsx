@@ -1,14 +1,27 @@
-import { StrictMode } from 'react'
-import { createRoot } from 'react-dom/client'
+import { StrictMode } from 'react';
+import { createRoot } from 'react-dom/client';
 import { createBrowserRouter, RouterProvider } from 'react-router-dom';
-import { Root } from './routes/Root';
-import { ErrorPage } from './pages/ErrorPage';
+import App from './App';
+import Error from './pages/Error';
+import Dashboard from './pages/Dashboard';
+import MyLoans from './features/loans/MyLoans';
+import LoanRequests from './features/loans/LoanRequests';
+import PaymentHistory from './features/payments/PaymentHistory';
+import Friends from './features/friends/Friends';
+import AddFriend from './features/friends/AddFriend';
+import FriendProfile from './features/friends/FriendProfile';
+import Profile from './features/profile/Profile';
+import Settings from './pages/Settings';
+import Notifications from './features/notifications/Notifications';
+import Wallet from './features/payments/Wallet';
+import Login from './features/auth/Login';
+import Register from './features/auth/Register';
 
 const router = createBrowserRouter([
   {
     path: "/",
-    element: <Root />,
-    errorElement: <ErrorPage />,
+    element: <App />,
+    errorElement: <Error />,
     children: [
       {
         path: "dashboard",
@@ -36,7 +49,7 @@ const router = createBrowserRouter([
       },
       {
         path: "friends/:friendId",
-        element: <Friend />,
+        element: <FriendProfile />,
       },
       {
         path: "profile",
@@ -55,6 +68,14 @@ const router = createBrowserRouter([
             element: <Wallet />,
           }
         ]
+      },
+      {
+        path: "login",
+        element: <Login />,
+      },
+      {
+        path: "register",
+        element: <Register />,
       },
     ]
   },
