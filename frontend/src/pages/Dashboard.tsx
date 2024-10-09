@@ -1,7 +1,7 @@
 
 function Dashboard() {
   return (
-    <h1>Login</h1>
+    <h1 className="bg-custom-primary-dark text-white">Dashboard</h1>
   );
 }
 

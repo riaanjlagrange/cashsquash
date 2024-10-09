@@ -8,18 +8,16 @@ export default {
     extend: {
       colors: {
         "custom-primary": {
-          100: "#4cc9f0",
-          250: "#4895ef",
-          500: "#4361ee",
-          750: "#3f37c9",
-          900: "#3a0ca3",
+          ligth: "#4cc9f0",
+          medium: "#4895ef",
+          default: "#4361ee",
+          dark: "#3f37c9",
+          "very-dark": "#3a0ca3",
         },
         "custom-accent": {
-          100: "#f72585",
-          250: "#b5179e",
-          500: "#7209b7",
-          750: "#560bad",
-          900: "#480ca8",
+          bright: "#f72585",
+          default: "#b5179e",
+          "very-dark": "#7209b7",
         },
       },
     },

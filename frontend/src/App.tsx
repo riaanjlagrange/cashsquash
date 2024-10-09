@@ -5,7 +5,7 @@ function App() {
 
   return (
     <>
-      <div>
+      <div className="flex w-[100vw] h-[100vh] dark:bg-slate-900">
         <Navbar />
         <Outlet />
       </div>
@@ -13,4 +13,4 @@ function App() {
   )
 }
 
-export default App
+export default App;

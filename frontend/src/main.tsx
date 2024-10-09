@@ -1,6 +1,7 @@
 import { StrictMode } from 'react';
 import { createRoot } from 'react-dom/client';
-import { createBrowserRouter, RouterProvider } from 'react-router-dom';
+import { createBrowserRouter, RouterProvider, Navigate } from 'react-router-dom';
+import './index.css'
 import App from './App';
 import Error from './pages/Error';
 import Dashboard from './pages/Dashboard';
@@ -12,12 +13,15 @@ import AddFriend from './features/friends/AddFriend';
 import FriendProfile from './features/friends/FriendProfile';
 import Profile from './features/profile/Profile';
 import Settings from './pages/Settings';
-import Notifications from './features/notifications/Notifications';
 import Wallet from './features/payments/Wallet';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
 
 const router = createBrowserRouter([
+  {
+    path: "/",
+    element: <Navigate to="/dashboard" />,
+  },
   {
     path: "/",
     element: <App />,
@@ -54,20 +58,14 @@ const router = createBrowserRouter([
       {
         path: "profile",
         element: <Profile />,
-        children: [
-          {
-            path: "settings",
-            element: <Settings />,
-          },
-          {
-            path: "notifications",
-            element: <Notifications />,
-          },
-          {
-            path: "my-wallet",
-            element: <Wallet />,
-          }
-        ]
+      },
+      {
+        path: "settings",
+        element: <Settings />,
+      },
+      {
+        path: "my-wallet",
+        element: <Wallet />,
       },
       {
         path: "login",
