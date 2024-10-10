@@ -2,7 +2,7 @@ import { loadLoanRequests } from "./loadLoanRequests";
 import { useAppDispatch, useAppSelector } from "../../app/hooks";
 import { useEffect } from "react";
 import { selectLoanRequests } from "./loanRequestsSlice";
-// import { loanRequest as loanRequestInterface } from './loanRequestsSlice.ts';
+import LoanRequestItem from "../../components/LoanRequestItem";
 
 
 function DashboardLoanRequests() {
@@ -21,11 +21,13 @@ function DashboardLoanRequests() {
 	console.log(loanRequests);
 
 	return (
-		<>
+		<ul className="flex flex-col gap-2 p-5">
 			{loanRequests.map((loanRequest) => (
-				<h1 key={loanRequest.id}>{loanRequest.requestMessage}</h1>
+				<li key={loanRequest.id}>
+					<LoanRequestItem loanRequest={loanRequest} />
+				</li>
 			))}
-		</>
+		</ul>
 	)
 }
 
