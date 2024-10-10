@@ -2,8 +2,6 @@ import { MdDashboard } from "react-icons/md";
 import { FaUserFriends, FaChevronRight } from "react-icons/fa";
 import { FaMoneyBills, FaWallet, FaMoneyCheckDollar, FaGear, FaBars, FaBarsStaggered } from "react-icons/fa6";
 import { NavLink, Link, useNavigate } from "react-router-dom";
-// temp logo
-import { SiCashapp } from "react-icons/si";
 // temp profile icon
 import { CgProfile } from "react-icons/cg";
 
@@ -19,7 +17,7 @@ function Navbar({ toggleMenu, isMenuExpanded }: { toggleMenu: () => void, isMenu
     toggleMenu();
   }
 
-  const activeStyle = "text-custom-accent-bright flex items-center justify-between";
+  const activeStyle = "text-custom-primary-default flex items-center justify-between";
   const normalStyle = "text-white flex items-center justify-between hover:text-custom-accent-bright transition-all";
 
   if (!isMenuExpanded) {
@@ -42,7 +40,7 @@ function Navbar({ toggleMenu, isMenuExpanded }: { toggleMenu: () => void, isMenu
           </button>
 
           <Link to="/dashboard" className="px-5 py-3 flex justify-start items-center gap-5">
-            <SiCashapp className="size-8 text-white" />
+            <img src="/logo.webp" className="w-8 h-8 rounded-md" alt="CashSquash Logo" />
             <span className="font-bold dark:text-white text-2xl">CashSquash</span>
           </Link>
         </div>

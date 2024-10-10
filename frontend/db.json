@@ -1,0 +1,59 @@
+{
+  "loanRequests": [
+    {
+      "id": "1",
+      "toUserId": "Riaan123",
+      "fromUserId": "User456",
+      "requestMessage": "Hi Riaan, can I please get R500? My cat was attacked by a porcupine and I need to rush it to the vet.",
+      "amount": "500 ZAR",
+      "dateCreated": "2024-10-10",
+      "dueDate": "2024-11-15",
+      "paymentPlan": "fullDirect",
+      "paymentStatus": "unfulfilled"
+    },
+    {
+      "id": "2",
+      "toUserId": "Riaan123",
+      "fromUserId": "User789",
+      "requestMessage": "Hey Riaan, I urgently need R200 for groceries until payday. Can you help me out?",
+      "amount": "200 ZAR",
+      "dateCreated": "2024-10-08",
+      "dueDate": "2024-10-20",
+      "paymentPlan": "halfSplit",
+      "paymentStatus": "unfulfilled"
+    },
+    {
+      "id": "3",
+      "toUserId": "Riaan123",
+      "fromUserId": "User234",
+      "requestMessage": "Hi Riaan, I need R1500 to pay my car repair bill. It’s unexpected and I’m short on cash.",
+      "amount": "1500 ZAR",
+      "dateCreated": "2024-10-05",
+      "dueDate": "2024-12-05",
+      "paymentPlan": "quarterSplit",
+      "paymentStatus": "unfulfilled"
+    },
+    {
+      "id": "4",
+      "toUserId": "Riaan123",
+      "fromUserId": "User567",
+      "requestMessage": "Hey Riaan, can I borrow R300 to fix my broken phone screen? I'll repay you by next month.",
+      "amount": "300 ZAR",
+      "dateCreated": "2024-09-15",
+      "dueDate": "2024-10-15",
+      "paymentPlan": "fullDirect",
+      "paymentStatus": "paid"
+    },
+    {
+      "id": "5",
+      "toUserId": "Riaan123",
+      "fromUserId": "User890",
+      "requestMessage": "Hi Riaan, I need R1000 to cover my rent shortfall this month. Can you lend it to me?",
+      "amount": "1000 ZAR",
+      "dateCreated": "2024-10-01",
+      "dueDate": "2024-11-01",
+      "paymentPlan": "halfSplit",
+      "paymentStatus": "unfulfilled"
+    }
+  ]
+}
