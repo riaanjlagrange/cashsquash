@@ -9,6 +9,11 @@ import Error from './pages/Error';
 import Dashboard from './pages/Dashboard';
 import MyLoans from './features/loans/MyLoans';
 import LoanRequests from './features/loans/LoanRequests';
+import LoanRequestDetails from './features/loans/LoanRequestDetails';
+import AcceptedRequests from './features/loans/AcceptedRequests';
+import AcceptedRequestDetails from './features/loans/AcceptedRequestDetails';
+import CounterOffers from './features/loans/CounterOffers';
+import CounterOfferForm from './features/loans/CounterOfferForm';
 import NewLoanRequest from './features/loans/NewLoanRequest';
 import PaymentHistory from './features/payments/PaymentHistory';
 import Friends from './features/friends/Friends';
@@ -41,6 +46,30 @@ const router = createBrowserRouter([
       {
         path: "loan-requests",
         element: <LoanRequests />,
+      },
+      {
+        path: "loan-requests/:loanRequestId",
+        element: <LoanRequestDetails />,
+      },
+      {
+        path: "accepted-requests",
+        element: <AcceptedRequests />,
+      },
+      {
+        path: "accepted-requests/:loanRequestId",
+        element: <AcceptedRequestDetails />,
+      },
+      {
+        path: "counter-offers",
+        element: <CounterOffers />,
+      },
+      {
+        path: "counter-offers/:loanRequestId",
+        element: <CounterOfferForm />,
+      },
+      {
+        path: "accepted-loans/:loanRequestId",
+        element: <LoanRequestDetails />,
       },
       {
         path: "new-request",

@@ -4,7 +4,6 @@ import { FaChevronRight } from "react-icons/fa";
 
 function loanRequestItem({ loanRequest }: { loanRequest: loanRequestInterface }) {
 
-
   return (
     <Link to={`/loan-requests/${loanRequest.id}`} className="grid grid-cols-7 justify-center items-center bg-slate-800 w-full px-5 py-2 h-20">
       <h1 className="text-md text-white col-span-1">{loanRequest.fromUserId}</h1>

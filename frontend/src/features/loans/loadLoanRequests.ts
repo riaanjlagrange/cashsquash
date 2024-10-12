@@ -1,6 +1,7 @@
 import { createAsyncThunk } from "@reduxjs/toolkit";
 
 const enpoint = "http://localhost:3000/loanRequests";
+
 export const loadLoanRequests = createAsyncThunk('loanRequests/loadLoanRequests', async () => {
 	try {
 		const response = await fetch(enpoint);

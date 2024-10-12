@@ -45,6 +45,28 @@
       "paymentStatus": "paid"
     },
     {
+      "id": "4",
+      "toUserId": "Riaan123",
+      "fromUserId": "User567",
+      "requestMessage": "Hey Riaan, can I borrow R300 to fix my broken phone screen? I'll repay you by next month.",
+      "amount": "300 ZAR",
+      "dateCreated": "2024-09-15",
+      "dueDate": "2024-10-15",
+      "paymentPlan": "fullDirect",
+      "paymentStatus": "paid"
+    },
+    {
+      "id": "4",
+      "toUserId": "Riaan123",
+      "fromUserId": "User567",
+      "requestMessage": "Hey Riaan, can I borrow R300 to fix my broken phone screen? I'll repay you by next month.",
+      "amount": "300 ZAR",
+      "dateCreated": "2024-09-15",
+      "dueDate": "2024-10-15",
+      "paymentPlan": "fullDirect",
+      "paymentStatus": "paid"
+    },
+    {
       "id": "5",
       "toUserId": "Riaan123",
       "fromUserId": "User890",

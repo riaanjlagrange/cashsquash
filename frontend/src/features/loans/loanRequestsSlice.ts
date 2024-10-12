@@ -1,5 +1,6 @@
 import { createSlice } from "@reduxjs/toolkit"
 import { loadLoanRequests } from "./loadLoanRequests"
+import { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 enum paymentPlan {
@@ -26,20 +27,51 @@ export interface loanRequest {
 
 interface initialState {
 	loanRequests: loanRequest[],
+	deniedLoanRequests: loanRequest[],
+	acceptedLoanRequests: loanRequest[],
 	isLoading: boolean,
 	hasError: boolean,
+	selectedLoanRequest: null | loanRequest;
 }
 
 const initialState: initialState = {
 	loanRequests: [],
+	deniedLoanRequests: [],
+	acceptedLoanRequests: [],
 	isLoading: true,
 	hasError: false,
+	selectedLoanRequest: null,
 }
 
 const loanRequestSlice = createSlice({
 	name: "loanRequests",
 	initialState,
-	reducers: {},
+	reducers: {
+		getRequestedLoanById: (state, action: PayloadAction<{ id: string }>) => {
+			const selectedLoanRequest = state.loanRequests.find((request) => request.id === action.payload.id);
+			if (selectedLoanRequest) {
+				state.selectedLoanRequest = selectedLoanRequest;
+
+			}
+		},
+		removeRequestedLoanById: (state, action: PayloadAction<{ id: string }>) => {
+			const newLoanRequests = state.loanRequests.filter((request) => request.id !== action.payload.id);
+			state.loanRequests = newLoanRequests;
+		},
+		moveRequestedLoanByIdToDenied: (state, action: PayloadAction<{ id: string }>) => {
+			const selectedLoanRequest = state.loanRequests.find((request) => request.id === action.payload.id);
+			if (selectedLoanRequest) {
+				state.deniedLoanRequests.push(selectedLoanRequest);
+			}
+		},
+		moveRequestedLoanByIdToAccepted: (state, action: PayloadAction<{ id: string }>) => {
+			const selectedLoanRequest = state.loanRequests.find((request) => request.id === action.payload.id);
+			if (selectedLoanRequest) {
+				state.acceptedLoanRequests.push(selectedLoanRequest);
+			}
+		}
+
+	},
 	extraReducers: (builder) => {
 		builder
 			.addCase(loadLoanRequests.pending, (state) => {
@@ -63,4 +95,6 @@ const loanRequestSlice = createSlice({
 })
 
 export default loanRequestSlice.reducer;
+export const { getRequestedLoanById, removeRequestedLoanById, moveRequestedLoanByIdToDenied, moveRequestedLoanByIdToAccepted } = loanRequestSlice.actions;
+export const getSelectedLoanRequest = (state: RootState) => state.loanRequests.selectedLoanRequest;
 export const selectLoanRequests = (state: RootState) => state.loanRequests;
