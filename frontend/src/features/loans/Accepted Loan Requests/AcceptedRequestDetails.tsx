@@ -1,7 +1,7 @@
 import { useParams } from "react-router-dom";
-import { getSelectedLoanRequest } from "./loanRequestsSlice";
-import { getRequestedLoanById } from "./loanRequestsSlice";
-import { useAppDispatch, useAppSelector } from "../../app/hooks";
+import { getSelectedLoanRequest } from "../loanRequestsSlice";
+import { getRequestedLoanById } from "../loanRequestsSlice";
+import { useAppDispatch, useAppSelector } from "../../../app/hooks";
 import { useEffect } from "react";
 import { Link } from "react-router-dom";
 
@@ -23,11 +23,15 @@ function LoanRequestDetails() {
 
 	return (
 		<div className="w-full h-full bg-slate-900 p-20 flex items-center justify-center">
-			<div className="w-full h-full flex flex-col justify-center items-center gap-5 p-10 bg-custom-primary-default">
-				<h1 className="text-green-400 text-center text-xl">Request from <Link to="/friends/:friendId" className="underline font-bold text-slate-800 hover:text-slate-900">{selectedLoanRequest?.fromUserId}</Link> accepted!</h1>
-				<div className="flex flex-col items-start justify-center gap-2 bg-slate-800 p-10">
+			<div className="w-full h-full flex flex-col justify-center items-center gap-5 p-10 bg-slate-800">
+				<h1 className="text-green-400 text-center text-xl">Request from <Link to="/friends/:friendId" className="underline font-bold text-white">{selectedLoanRequest?.fromUserId}</Link> accepted!</h1>
+				<div className="flex flex-col items-start justify-center gap-3 bg-slate-800 p-10">
 					<div>
-						<h2 className="text-custom-accent-default text-lg font-bold">{selectedLoanRequest?.fromUserId} Due Date:</h2>
+						<h2 className="text-custom-accent-default text-lg font-bold">Amount:</h2>
+						<p className="text-white text-md">{selectedLoanRequest?.amount}</p>
+					</div>
+					<div>
+						<h2 className="text-custom-accent-default text-lg font-bold">Due Date:</h2>
 						<p className="text-white text-md">{selectedLoanRequest?.dueDate}</p>
 					</div>
 					<div>
@@ -38,8 +42,9 @@ function LoanRequestDetails() {
 						<h2 className="text-custom-accent-default text-lg font-bold">Payment Plan:</h2>
 						<p className="text-white text-md">{selectedLoanRequest?.paymentPlan}</p>
 					</div>
-					<h1 className="text-xl text-green-500">Payment Successful!</h1>
 				</div>
+				<h1 className="text-xl text-green-500">Payment Successful!</h1>
+				<Link to="/dashboard" className="text-lg bg-green-400 hover:bg-green-500 text-white px-3 py-1 rounded-sm">Back to Dashboard</Link>
 			</div>
 		</div>
 	);

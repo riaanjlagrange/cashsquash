@@ -37,7 +37,7 @@ function App() {
     <>
       <div className={`grid ${columnStyling} w-[100vw] h-[100vh] dark:bg-slate-900 relative `}>
         <Navbar toggleMenu={handleToggleMenu} isMenuExpanded={menuExpanded} />
-        <div className={`flex items-center justify-center ${outletStyling}`}>
+        <div className={`overflow-scroll flex items-center justify-center ${outletStyling}`}>
           <Outlet />
         </div>
       </div>

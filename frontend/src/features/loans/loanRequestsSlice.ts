@@ -4,15 +4,22 @@ import { PayloadAction } from "@reduxjs/toolkit";
 import { RootState } from "../../app/store";
 
 enum paymentPlan {
-	"fullDirect",
-	"halfSlit",
-	"quarterSplit",
+	FULLDIRECT = "fullDirect",
+	HALFSPLIT = "halfSplit",
+	QUARTERSPLIT = "quarterSplit",
 }
 
 enum paymentStatus {
-	"fulfilled",
-	"unfulfilled",
+	FULFILLED = "fulfilled",
+	UNFULFILLED = "unfulfilled",
 }
+
+export enum requestStatusEnum {
+	ACCEPTED = "accepted",
+	PENDING = "pending",
+	DENIED = "denied",
+}
+
 export interface loanRequest {
 	id: string,
 	toUserId: string,
@@ -23,24 +30,25 @@ export interface loanRequest {
 	dueDate: string,
 	paymentPlan: paymentPlan,
 	paymentStatus: paymentStatus,
+	requestStatus: requestStatusEnum,
 }
 
 interface initialState {
 	loanRequests: loanRequest[],
 	deniedLoanRequests: loanRequest[],
 	acceptedLoanRequests: loanRequest[],
+	selectedLoanRequest: null | loanRequest;
 	isLoading: boolean,
 	hasError: boolean,
-	selectedLoanRequest: null | loanRequest;
 }
 
 const initialState: initialState = {
 	loanRequests: [],
 	deniedLoanRequests: [],
 	acceptedLoanRequests: [],
+	selectedLoanRequest: null,
 	isLoading: true,
 	hasError: false,
-	selectedLoanRequest: null,
 }
 
 const loanRequestSlice = createSlice({
@@ -61,12 +69,16 @@ const loanRequestSlice = createSlice({
 		moveRequestedLoanByIdToDenied: (state, action: PayloadAction<{ id: string }>) => {
 			const selectedLoanRequest = state.loanRequests.find((request) => request.id === action.payload.id);
 			if (selectedLoanRequest) {
+				selectedLoanRequest.requestStatus = requestStatusEnum.DENIED;
+				state.selectedLoanRequest = selectedLoanRequest;
 				state.deniedLoanRequests.push(selectedLoanRequest);
 			}
 		},
 		moveRequestedLoanByIdToAccepted: (state, action: PayloadAction<{ id: string }>) => {
 			const selectedLoanRequest = state.loanRequests.find((request) => request.id === action.payload.id);
 			if (selectedLoanRequest) {
+				selectedLoanRequest.requestStatus = requestStatusEnum.ACCEPTED;
+				state.selectedLoanRequest = selectedLoanRequest;
 				state.acceptedLoanRequests.push(selectedLoanRequest);
 			}
 		}

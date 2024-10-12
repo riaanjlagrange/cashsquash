@@ -7,13 +7,12 @@ import './index.css'
 import App from './App';
 import Error from './pages/Error';
 import Dashboard from './pages/Dashboard';
-import MyLoans from './features/loans/MyLoans';
-import LoanRequests from './features/loans/LoanRequests';
+import LoanRequests from './features/loans/Pending Loan Requests/LoanRequests';
 import LoanRequestDetails from './features/loans/LoanRequestDetails';
-import AcceptedRequests from './features/loans/AcceptedRequests';
-import AcceptedRequestDetails from './features/loans/AcceptedRequestDetails';
-import CounterOffers from './features/loans/CounterOffers';
-import CounterOfferForm from './features/loans/CounterOfferForm';
+import AcceptedRequestDetails from './features/loans/Accepted Loan Requests/AcceptedRequestDetails';
+import AcceptedLoanRequests from './features/loans/Accepted Loan Requests/AcceptedLoanRequests';
+import CounterOffers from './features/loans/Counter Offers/CounterOffers';
+import CounterOfferForm from './features/loans/Counter Offers/CounterOfferForm';
 import NewLoanRequest from './features/loans/NewLoanRequest';
 import PaymentHistory from './features/payments/PaymentHistory';
 import Friends from './features/friends/Friends';
@@ -24,6 +23,9 @@ import Settings from './pages/Settings';
 import Wallet from './features/payments/Wallet';
 import Login from './features/auth/Login';
 import Register from './features/auth/Register';
+import DeniedLoanRequests from './features/loans/Denied Loan Requests/DeniedLoanRequests';
+import DeniedRequestDetails from './features/loans/Denied Loan Requests/DeniedRequestDetails';
+import AllRequests from './features/loans/AllRequests';
 
 const router = createBrowserRouter([
   {
@@ -40,9 +42,18 @@ const router = createBrowserRouter([
         element: <Dashboard />,
       },
       {
-        path: "my-loans",
-        element: <MyLoans />,
+        path: "all-requests",
+        element: <AllRequests />,
       },
+      {
+        path: "accepted-loan-requests",
+        element: <AcceptedLoanRequests />,
+      },
+      {
+        path: "accepted-loan-requests/:loanRequestId",
+        element: <AcceptedRequestDetails />,
+      },
+
       {
         path: "loan-requests",
         element: <LoanRequests />,
@@ -51,14 +62,7 @@ const router = createBrowserRouter([
         path: "loan-requests/:loanRequestId",
         element: <LoanRequestDetails />,
       },
-      {
-        path: "accepted-requests",
-        element: <AcceptedRequests />,
-      },
-      {
-        path: "accepted-requests/:loanRequestId",
-        element: <AcceptedRequestDetails />,
-      },
+
       {
         path: "counter-offers",
         element: <CounterOffers />,
@@ -67,10 +71,16 @@ const router = createBrowserRouter([
         path: "counter-offers/:loanRequestId",
         element: <CounterOfferForm />,
       },
+
       {
-        path: "accepted-loans/:loanRequestId",
-        element: <LoanRequestDetails />,
+        path: "denied-loan-requests",
+        element: <DeniedLoanRequests />,
       },
+      {
+        path: "denied-loan-requests/:loanRequestId",
+        element: <DeniedRequestDetails />,
+      },
+
       {
         path: "new-request",
         element: <NewLoanRequest />,

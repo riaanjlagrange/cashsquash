@@ -1,11 +1,13 @@
 import { MdDashboard } from "react-icons/md";
-import { FaUserFriends, FaChevronRight } from "react-icons/fa";
-import { FaMoneyBills, FaWallet, FaMoneyCheckDollar, FaGear, FaBars, FaBarsStaggered } from "react-icons/fa6";
+import { FaUserFriends, FaChevronRight, FaChevronDown } from "react-icons/fa";
+import { FaWallet, FaMoneyCheckDollar, FaGear, FaBars, FaBarsStaggered } from "react-icons/fa6";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 // temp profile icon
 import { CgProfile } from "react-icons/cg";
+import { useState } from "react";
 
 function Navbar({ toggleMenu, isMenuExpanded }: { toggleMenu: () => void, isMenuExpanded: boolean }) {
+  const [requestsMenuToggled, setRequestsMenuToggled] = useState(false);
 
   const navigate = useNavigate();
 
@@ -15,6 +17,10 @@ function Navbar({ toggleMenu, isMenuExpanded }: { toggleMenu: () => void, isMenu
 
   const handleMenuClick = () => {
     toggleMenu();
+  }
+
+  const handleToggleLoanRequestsMenu = () => {
+    setRequestsMenuToggled(requestsMenuToggled ? false : true);
   }
 
   const activeStyle = "text-custom-primary-default flex items-center justify-between";
@@ -45,7 +51,7 @@ function Navbar({ toggleMenu, isMenuExpanded }: { toggleMenu: () => void, isMenu
           </Link>
         </div>
 
-        <ul className="flex flex-col gp-2 items-center">
+        <ul className="flex flex-col gap-2 items-center">
           <li className="w-full px-5 py-3">
             <NavLink to="/dashboard" className={({ isActive }) => (
               isActive ? activeStyle : normalStyle
@@ -59,27 +65,56 @@ function Navbar({ toggleMenu, isMenuExpanded }: { toggleMenu: () => void, isMenu
           </li>
 
           <li className="w-full px-5 py-3">
-            <NavLink to="/my-loans" className={({ isActive }) => (
-              isActive ? activeStyle : normalStyle
-            )}>
+            <button className="text-white flex items-center justify-between hover:text-custom-accent-bright transition-all w-full" onClick={handleToggleLoanRequestsMenu}>
               <div className="flex gap-4 justify-center items-center">
                 <FaMoneyCheckDollar className="size-6" />
-                <span className="text-xl">My Loans</span>
+                <span className="text-xl">Loan Requests</span>
               </div>
-              <FaChevronRight className="font-light text-white" />
-            </NavLink>
-          </li>
+              {requestsMenuToggled ? <FaChevronDown className="font-light text-white" /> : <FaChevronRight className="font-light text-white" />}
+            </button>
 
-          <li className="w-full px-5 py-3">
-            <NavLink to="/payment-history" className={({ isActive }) => (
-              isActive ? activeStyle : normalStyle
-            )}>
-              <div className="flex gap-4 justify-center items-center">
-                <FaMoneyBills className="size-6" />
-                <span className="text-xl">Payment History</span>
-              </div>
-              <FaChevronRight className="font-light text-white" />
-            </NavLink>
+            <ul className={requestsMenuToggled ? 'flex flex-col gap-2 items-start px-10 mt-5' : 'hidden'}>
+              <li className="w-full py-1">
+                <NavLink to="/all-requests" className={({ isActive }) => (
+                  isActive ? activeStyle : normalStyle
+                )}>
+                  <div className="flex gap-4 justify-center items-center">
+                    <span className="text-xl">All Requests</span>
+                  </div>
+                </NavLink>
+              </li>
+
+              <li className="w-full py-1">
+                <NavLink to="/loan-requests" className={({ isActive }) => (
+                  isActive ? activeStyle : normalStyle
+                )}>
+                  <div className="flex gap-4 justify-center items-center">
+                    <span className="text-xl">Pending Requests</span>
+                  </div>
+                </NavLink>
+              </li>
+
+              <li className="w-full py-1">
+                <NavLink to="/accepted-loan-requests" className={({ isActive }) => (
+                  isActive ? activeStyle : normalStyle
+                )}>
+                  <div className="flex gap-4 justify-center items-center">
+                    <span className="text-xl">Accepted Requests</span>
+                  </div>
+                </NavLink>
+              </li>
+
+              <li className="w-full py-1">
+                <NavLink to="/denied-loan-requests" className={({ isActive }) => (
+                  isActive ? activeStyle : normalStyle
+                )}>
+                  <div className="flex gap-4 justify-center items-center">
+                    <span className="text-xl">Denied Requests</span>
+                  </div>
+                </NavLink>
+              </li>
+            </ul>
+
           </li>
 
           <li className="w-full px-5 py-3">
