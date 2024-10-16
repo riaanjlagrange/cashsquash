@@ -1,7 +1,6 @@
 import { useAppSelector } from "../../app/hooks";
 import { loanRequest, selectLoanRequests } from "./loanRequestsSlice";
 import LoanRequestItem from "./LoanRequestItem";
-import FuzzySearch from 'fuzzy-search';
 import { useState } from "react";
 
 
@@ -13,19 +12,20 @@ function AllRequests() {
 	const acceptedLoanRequests = loanRequestsWithState.acceptedLoanRequests;
 	const deniedLoanRequests = loanRequestsWithState.deniedLoanRequests;
 
-	const pendingRequestsSearcher = new FuzzySearch(pendingLoanRequests, ['requestMessage', 'fromUsedId', 'amount', 'id'], {
-		caseSensitive: false,
-	});
-	const acceptedRequestsSearcher = new FuzzySearch(acceptedLoanRequests, ['requestMessage', 'fromUsedId', 'amount', 'id'], {
-		caseSensitive: false,
-	});
-	const deniedRequestsSearcher = new FuzzySearch(deniedLoanRequests, ['requestMessage', 'fromUsedId', 'amount', 'id'], {
-		caseSensitive: false,
+	const filteredPendingRequests: loanRequest[] = pendingLoanRequests.filter((loanRequest) => {
+		return loanRequest.requestMessage.includes(searchInput.toLowerCase()) ||
+			loanRequest.fromUserId.includes(searchInput.toLowerCase())
 	});
 
-	const filteredPendingRequests: loanRequest[] | null = pendingRequestsSearcher.search(searchInput);
-	const filteredAcceptedRequests: loanRequest[] | null = acceptedRequestsSearcher.search(searchInput);
-	const filteredDeniedRequests: loanRequest[] | null = deniedRequestsSearcher.search(searchInput);
+	const filteredAcceptedRequests: loanRequest[] = pendingLoanRequests.filter((loanRequest) => {
+		return loanRequest.requestMessage.includes(searchInput.toLowerCase()) ||
+			loanRequest.fromUserId.includes(searchInput.toLowerCase())
+	});
+
+	const filteredDeniedRequests: loanRequest[] = pendingLoanRequests.filter((loanRequest) => {
+		return loanRequest.requestMessage.includes(searchInput.toLowerCase()) ||
+			loanRequest.fromUserId.includes(searchInput.toLowerCase())
+	});
 
 
 	if (loanRequestsWithState.isLoading) {
@@ -43,21 +43,21 @@ function AllRequests() {
 				<input type="text" onChange={(e) => setSearchInput(e.target.value)} />
 			</div>
 			<ul className="flex flex-col gap-2 p-5 w-full">
-				{filteredPendingRequests.map((loanRequest) => (
+				{filteredPendingRequests.map((loanRequest: loanRequest) => (
 					<li key={loanRequest.id}>
 						<LoanRequestItem loanRequest={loanRequest} link={`/loan-requests/${loanRequest.id}`} requestStatus="pending" />
 					</li>
 				))}
 			</ul>
 			<ul className="flex flex-col gap-2 p-5 w-full">
-				{filteredAcceptedRequests.map((loanRequest) => (
+				{filteredAcceptedRequests.map((loanRequest: loanRequest) => (
 					<li key={loanRequest.id}>
 						<LoanRequestItem loanRequest={loanRequest} link={`/accepted-loan-requests/${loanRequest.id}`} requestStatus="accepted" />
 					</li>
 				))}
 			</ul>
 			<ul className="flex flex-col gap-2 p-5 w-full">
-				{filteredDeniedRequests.map((loanRequest) => (
+				{filteredDeniedRequests.map((loanRequest: loanRequest) => (
 					<li key={loanRequest.id}>
 						<LoanRequestItem loanRequest={loanRequest} link={`/denied-loan-requests/${loanRequest.id}`} requestStatus="denied" />
 					</li>
